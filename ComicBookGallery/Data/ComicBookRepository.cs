@@ -62,15 +62,26 @@ namespace ComicBookGallery.Data
 
         public ComicBook GetComicBook(int id)
         {
-            ComicBook comicBookToReturn = null;
-            foreach (var comicBook in _comicBooks)
-            {
-                if (comicBook.Id == id)
-                {
-                    comicBookToReturn = comicBook;
-                }
-            }
-            return comicBookToReturn;
+            //Normal method
+            //ComicBook comicBookToReturn = null;
+            //foreach (var comicBook in _comicBooks)
+            //{
+            //    if (comicBook.Id == id)
+            //    {
+            //        comicBookToReturn = comicBook;
+            //    }
+            //}
+            //return comicBookToReturn;
+            //By using LINQ
+            //var comicBookToReturn = from comicBook in _comicBooks
+            //                        where comicBook.Id == id
+            //                        select comicBook;
+
+
+            //return comicBookToReturn.FirstOrDefault<ComicBook>();
+
+            //By using lambda Expressions
+            return _comicBooks.Where<ComicBook>(comicBook => comicBook.Id == id).FirstOrDefault<ComicBook>();
         }
     }
 }
